@@ -1,0 +1,32 @@
+class Solution {
+    public int maxVowels(String s, int k) {
+        int maxvow=0,windvow=0;
+        Set<Character> subs=new HashSet<>();
+        subs.add('a');
+        subs.add('e');
+        subs.add('i');
+        subs.add('o');
+        subs.add('u');
+        for(int i=0;i<k;i++)
+        {
+            if(subs.contains(s.charAt(i)))
+            {
+                windvow++;
+            }
+        }
+        maxvow=windvow;
+        for(int i=k;i<s.length();i++)
+        {
+            if(subs.contains(s.charAt(i-k)))
+            {
+                windvow--;
+            }
+            if(subs.contains(s.charAt(i)))
+            {
+                windvow++;
+            }
+            maxvow=Math.max(maxvow,windvow);
+        }
+        return maxvow;
+    }
+}
